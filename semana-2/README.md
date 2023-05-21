@@ -1,9 +1,9 @@
-React é uma biblioteca JavaScript de código aberto amplamente utilizada para construir interfaces de usuário (UI) interativas e responsivas. O React fornece e permite a criação de componentes reutilizáveis que podem ser combinados de diferentes formas a fim de criar interfaces complexas de maneira eficiente.
-
 # NextJS
+## Introdução
+Como vimos anteriormente, React é uma biblioteca JavaScript de código aberto amplamente utilizada para construir interfaces de usuário (UI) interativas e responsivas. O React fornece e permite a criação de componentes reutilizáveis que podem ser combinados de diferentes formas a fim de criar interfaces complexas de maneira eficiente.
 
 ## O que é NextJS?
-Diferentemente do React, que se trata de uma biblioteca, o Next é um framework que fornece uma estrutura de desenvolvimento completa para a construção de aplicativos web escaláveis e otimizados e expande as funcionalidades do React, adicionando recursos que serão comentados a seguir.
+Diferentemente do React, que se trata de uma biblioteca, o Next é um framework que fornece uma estrutura de desenvolvimento completa para a construção de aplicativos web escaláveis e otimizados e expande as funcionalidades do React. Os recursos fundamentais do Next são apresentados a seguir.
 
 ### Framework x Biblioteca:
 
@@ -21,7 +21,7 @@ Por outro lado, um framework é uma estrutura rígida de desenvolvimento que def
   ### Diferentes formas de renderização: 
   Tipicamente, em um projeto React puro, o Front-end e o Back-end são conectados diretamente, fazendo com que o conteúdo seja renderizado do lado do cliente (Client Side Rendering - CSR), pois depende do código JavaScript, que é executado no navegador do usuário. Consequentemente todo o HTML gerado através do JSX também é gerado somente no navegador do usuário, resultando em alguns problemas, por exemplo, atrasos perceptíveis ao carregar a página. 
   
-  o Next, em 2016, buscou solucionar esse problema. Ele possui um servidor Node entre o Front-end e o Back-end da aplicação, possibilitando a renderização do lado do servidor (Server Side Rendering - SSR) como padrão. Esse modelo de geração não é uma novidade para a época e já era algo comum em PHP, por exemplo, no entanto, unindo o Node com o React, é possível renderizar as páginas e todo o HTML básico no servidor, antes de serem enviadas para o cliente, resultando em tempos de carregamento mais rápidos. Além do SSR o Next também possibilita o próprio CSR, Static Site Generation (SSG) e Incremental Static Regeneration (ISR), que serão comentados conforme necessário.
+  o Next, em 2016, solucionou esse problema. Ele possui um servidor Node entre o Front-end e o Back-end da aplicação, possibilitando a renderização do lado do servidor (Server Side Rendering - SSR) como padrão. Esse modelo de geração não é uma novidade para a época e já era algo comum em PHP, por exemplo, no entanto, unindo o Node com o React, é possível renderizar as páginas e todo o HTML básico no servidor, antes de serem enviadas para o cliente, resultando em tempos de carregamento mais rápidos. Além do SSR o Next também possibilita o próprio CSR, Static Site Generation (SSG) e Incremental Static Regeneration (ISR), que serão comentados conforme necessário.
   
   ### Otimizações de desempenho: 
   O Next também possui recursos integrados de otimização de desempenho, como carregamento de código assíncrono, divisão automática de código e dimensionamento de imagens. Essas otimizações ajudam a melhorar a velocidade de carregamento e a eficiência do aplicativo.
@@ -48,7 +48,7 @@ npx create-next-app@latest --typescript [nome-do-projeto]
 # ou
 yarn create next-app --typescript [nome-do-projeto]
 
-# Obs: não é necessária a flag typescript, no entando muito recomendada.
+# Obs: não é necessário utilizar typescript, no entando muito recomendado
 ```
   Caso encontre dificuldades para abrir o terminal na pasta desejada, existem duas opções:
   
@@ -69,11 +69,28 @@ O arquivo `app/page.tsx` é a primeira página que o projeto irá carregar e ao 
 
 Tudo pronto para o desenvolvimento de um novo projeto!
 
-Antes de prosseguirmos com a explicação, vale lembrar que sempre que tiver alguma dúvida, entrar em contato com os membros responsáveis pela capacitação (Pedro e Ariadne), nós sempre ficaremos felizes de ajudar. Uma outra opção é consultar a documentação, também é importante saber como usá-la ao seu favor e é lá que se encontram todas as informações oficiais do framework.
-  - [Next.js Documentation](https://nextjs.org/docs) - documentação do Next.js.
-  - [Learn Next.js](https://nextjs.org/learn) - tutorial interativo.
+Antes de prosseguirmos com a explicação, vale destacar algumas formas de tirar dúvidas e expandir o conhecimento:
+   - Sempre que tiver alguma dúvida sobre o que foi apresentado, sinta-se à vontade para entrar em contato com os membros responsáveis pela capacitação (Pedro e Ariadne), nós sempre ficaremos felizes de ajudar. 
+   - Consulte a documentação, é importante saber como usá-la e é lá estão todas as informações oficiais do framework:
+      - [Next.js Documentation](https://nextjs.org/docs) - documentação do Next.js.
+      - [Learn Next.js](https://nextjs.org/learn) - tutorial interativo.
+   - Caso seja algo mais específico, que não é tão fácil de entrar na documentação, Stackoverflow e chatGPT sempre serão boas opções, contanto que tente entender o que foi feito.
+   
+Obs: Ao consultar a documentação ou algum outro meio, lembre-se de certificar que se trata do Next 13, lançado esse ano, houve um grande salto desde a última versão e várias funcionalidades mudaram. Vale notar que o chatGPT ainda não possui informações após 2021, então tome cuidado ao utilizá-lo.
 
 ## Roteamento
+
+Como dito anteriormente, houve um grande salto nas versões do Next 12 para o 13, desse modo acreditamos ser interessante apresentar como era antes e alguns problemas e como é a versão nova e como os problemas foram resolvidos.
+
+### O que é roteamento?
+
+O roteamento desempenha um papel fundamental em aplicativos web e determina qual conteúdo deve ser exibido em resposta a uma determinada URL. Ele permite que os desenvolvedores definam como as diferentes páginas e componentes da aplicação serão exibidos e interagem entre si.
+
+No desenvolvimento web, o roteamento é o sistema que possibilita a navegação do usuário através de diferentes seções da aplicação, controlando o fluxo de navegação e exibição de conteúdo em uma aplicação. Esse controle do fluxo é feito a partir de rotas, ou URLs, que garantem que o usuário seja direcionado corretamente para as diferentes páginas e recursos.
+
+De forma simples, a URL informa ao aplicativo o que o usuário deseja acessar. Por exemplo, imagine que um site possui um banco de dados sobre filmes. A URL base determina o nome do site, como `www.amantes-de-cinema.com`, e ao digitar esse link o usuário é direcionado para o site, que contém uma lista de filmes. Suponha que o usuário queira procurar as informações sobre um determinado filme, então ele pode adicionar à URL qual filme ele deseja saber a respeito, por exemplo `www.amantes-de-cinema.com/Inception-2010` ou `www.amantes-de-cinema.com/A-Quiet-Place-2018`. E então aparecerá uma página dedicada ao filme escolhido. Agora imagine que ele queira saber uma informação ainda mais específica sobre o filme, então ele pode digitar `www.amantes-de-cinema.com/Inception-2010/elenco`.
+
+Ao utilizar o sistema de roteamento do Next.js, é possível mapear URLs específicas para componentes ou ações correspondentes na aplicação. Isso permite que os usuários naveguem pela aplicação por meio de cliques em links ou pela digitação de URLs diretamente no navegador. O roteamento também pode envolver o tratamento de parâmetros na URL, como IDs de recursos ou informações de pesquisa, e a manipulação de eventos, como o redirecionamento para uma página de erro quando uma rota não é encontrada.
 
 Roteamento
 O que é roteamento?
